@@ -1,0 +1,12 @@
+{
+    "items":{
+        "item1":{
+            "name" : "blabla",
+            "sprite_little": "chemin/vers/image",
+            "sprite_big": "chemin/vers/image"
+        }
+    },
+    "image":{
+        "bouton...":"chemin/vers/bouton"
+    }
+}
