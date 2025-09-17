@@ -1,5 +1,6 @@
 import arcade
 from views.menu_view import MenuView
+from views.scenario_view import ScenarioView
 import config
 from utils import getWindowSize
 
