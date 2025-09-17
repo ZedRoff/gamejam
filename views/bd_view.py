@@ -30,8 +30,15 @@ class BdView(arcade.View):
             BD(width // 2, height // 2, "./assets/bg_1_5.png", delay=1, should_be_deleted=True),
             BD(width // 2, height // 2, "./assets/bg_1_6.png", delay=1, should_be_deleted=True),
             BD(width // 2, height // 2, "./assets/bg_1_7.png", delay=1, should_be_deleted=True),
-            BD(width // 2, 250, "./assets/dialogue.png", delay=5, should_be_deleted=True, text="parfais, ils sont partis dormir"),
-            BD(width // 2, height // 2, "./assets/bg_1_8.png", delay=3, should_be_deleted=True),
+            BD(width // 2, 250, "./assets/dialogue.png", delay=1, should_be_deleted=True, text="Parfait, ils sont partis dormir"),
+            BD(width // 2, height // 2, "./assets/bg_1_8.png", delay=5, should_be_deleted=True),
+            BD(0,0,"./assets/bg_1_4.png", delay=1, should_be_deleted=True, clear=True),
+            BD(width // 2, height // 2, "./assets/couloir_layout.png", delay=1),
+            BD(width // 2, height // 2, "./assets/armoire.png", delay=1),
+            BD(width // 2, height // 2, "./assets/couloir_character1.png", delay=1),
+            BD(width // 2, height // 2, "./assets/couloir_character2.png", delay=1),
+        
+        
         ]
 
         self.active_frame = self.frames[0]
@@ -60,10 +67,15 @@ class BdView(arcade.View):
             return
 
         self.frame_timer += delta_time
-
+        if self.active_frame.clear:
+            self.scene["UI"].clear()
+            self.current_frame_index += 1
+            self.frame_timer = 0
+            
+            return
         if self.frame_timer >= self.frame_delay:
             self.frame_timer = 0
-
+            
             # Supprimer la frame actuelle si nécessaire
             if self.active_frame and self.active_frame.should_be_deleted:
                 self.scene["UI"].remove(self.active_frame)
@@ -77,12 +89,15 @@ class BdView(arcade.View):
                 self.scene.add_sprite("UI", self.active_frame)
 
             else:
+                self.scene["UI"].clear()
                 print("Fin des BD frames")
-                self.show_bd = False
+                """
                 from views.game_view import GameView
                 game_view = GameView()
                 game_view.setup()  
                 self.window.show_view(game_view)
+                """
+                
 
 
     def on_show_view(self):

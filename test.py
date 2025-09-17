@@ -12,15 +12,15 @@ class MainView(arcade.View):
     def __init__(self):
         super().__init__()
         
-        self.background_sprite = arcade.Sprite("assets/sacBack.png")
-        self.background_sprite.width = SCREEN_WIDTH
+        self.background_sprite = arcade.Sprite("assets/sacBack.png", scale=1)
+        self.background_sprite.width = SCREEN_WIDTH - 1000
         self.background_sprite.height = SCREEN_HEIGHT
-        self.background_sprite.center_x = SCREEN_WIDTH // 2
+        self.background_sprite.center_x = SCREEN_WIDTH // 2 - 150
         self.background_sprite.center_y = SCREEN_HEIGHT // 2
         self.background_list = arcade.SpriteList()
-        self.background_list.append(self.background_sprite)
+       # self.background_list.append(self.background_sprite)
         
-        self.maze = Maze(600//50, 600//50, 70)
+        self.maze = Maze(600//50, 600//50, 70, SCREEN_WIDTH//2-500, SCREEN_HEIGHT//2-450)
         self.maze.create_draggable_objects()
 
     def on_draw(self):
