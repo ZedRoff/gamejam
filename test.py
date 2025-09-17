@@ -22,8 +22,8 @@ class MainView(arcade.View):
         self.maze = Maze(600//50, 600//50, 70, SCREEN_WIDTH//2-500, SCREEN_HEIGHT//2-500)
         self.maze.create_draggable_objects()
 
-        self.handG = Hand("assets/hand.png", "gauche", self.maze)
-        self.handD = Hand("assets/hand.png", "droite", self.maze)
+        self.handG = Hand("assets/handG.png", "gauche", self.maze)
+        self.handD = Hand("assets/handD.png", "droite", self.maze)
         
         if random.choice([True, False]):
             self.active_hand = self.handG
@@ -40,6 +40,7 @@ class MainView(arcade.View):
 
     def on_update(self, delta_time):
         self.maze.update()
+        self.maze.remove_destroyed_objects()
         self.active_hand.update()
 
     def on_key_press(self, symbol, modifiers):

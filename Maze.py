@@ -51,6 +51,9 @@ class Maze:
         left = j > 0 and self.G[i][j-1] == 1
         return (up, right, down, left)
     
+    def remove_destroyed_objects(self):
+        self.draggable_objects = [obj for obj in self.draggable_objects if not obj.to_remove]
+    
     def get_wall_image(self, connections):
         #bas,droite,haut,gauche 
         wall_images = {

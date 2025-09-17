@@ -8,6 +8,7 @@ class DraggableSprite:
         self.maze = maze
         self.dragged = False
         self.shake_counter = 0
+        self.to_remove = False
         
     def on_mouse_press(self, x, y, button, modifiers):
         self.dragged = self.sprite.collides_with_point((x, y))
@@ -32,14 +33,16 @@ class DraggableSprite:
                         break
             
             if self.maze:
-                maze_left = self.maze.start_x-100
-                maze_right = self.maze.start_x + self.maze.width_cases * self.maze.case_size
-                maze_bottom = self.maze.start_y
-                maze_top = self.maze.start_y + self.maze.height_cases * self.maze.case_size
+                maze_left = self.maze.start_x - 100
+                maze_right = self.maze.start_x + self.maze.width_cases * self.maze.case_size + 100
+                maze_bottom = self.maze.start_y - 100
+                maze_top = self.maze.start_y + self.maze.height_cases * self.maze.case_size + 100
                 
                 if (self.sprite.center_x < maze_left or self.sprite.center_x > maze_right or
                     self.sprite.center_y < maze_bottom or self.sprite.center_y > maze_top):
-                    collision = True
+                    self.to_remove = True
+                    self.sprite.remove_from_sprite_lists()
+                    return
             
             if collision:
                 self.sprite.center_x -= dx

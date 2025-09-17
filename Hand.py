@@ -5,8 +5,8 @@ SCREEN_HEIGHT = 1080
 class Hand:
     def __init__(self, hand_filename, direction, maze):
         self.image = arcade.Sprite(hand_filename, 1)
-        self.image.width = 0.5 * SCREEN_WIDTH
-        self.image.height = 0.5 * SCREEN_HEIGHT
+        self.image.width = 0.8 * SCREEN_WIDTH
+        self.image.height = 0.8 * SCREEN_HEIGHT
         self.direction = direction
         self.maze = maze
         self.image_list = arcade.SpriteList()
@@ -18,10 +18,10 @@ class Hand:
         
         if self.direction == "droite":
             self.image.center_x = SCREEN_WIDTH + self.image.width // 2
-            self.target_x = self.maze.start_x + self.maze.width_cases * self.maze.case_size + self.image.width // 2
+            self.target_x = self.maze.start_x + self.maze.width_cases * self.maze.case_size +700
         else:
             self.image.center_x = -self.image.width // 2
-            self.target_x = self.maze.start_x - self.image.width // 256
+            self.target_x = self.maze.start_x+100
             
         self.image.center_y = center_y+100
 
