@@ -1,8 +1,7 @@
 import arcade
 import random
-import arcade
-import random
 from Maze import Maze
+from Hand import Hand
 from DraggableSprite import DraggableSprite
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
@@ -13,23 +12,36 @@ class MainView(arcade.View):
         super().__init__()
         
         self.background_sprite = arcade.Sprite("assets/sacBack.png", scale=1)
-        self.background_sprite.width = SCREEN_WIDTH - 1000
+        self.background_sprite.width = SCREEN_WIDTH 
         self.background_sprite.height = SCREEN_HEIGHT
         self.background_sprite.center_x = SCREEN_WIDTH // 2 - 150
         self.background_sprite.center_y = SCREEN_HEIGHT // 2
         self.background_list = arcade.SpriteList()
-       # self.background_list.append(self.background_sprite)
+        self.background_list.append(self.background_sprite)
         
-        self.maze = Maze(600//50, 600//50, 70, SCREEN_WIDTH//2-500, SCREEN_HEIGHT//2-450)
+        self.maze = Maze(600//50, 600//50, 70, SCREEN_WIDTH//2-500, SCREEN_HEIGHT//2-500)
         self.maze.create_draggable_objects()
+
+        self.handG = Hand("assets/handG.png", "gauche", self.maze)
+        self.handD = Hand("assets/handD.png", "droite", self.maze)
+        
+        if random.choice([True, False]):
+            self.active_hand = self.handG
+        else:
+            self.active_hand = self.handD
+            
+        self.active_hand.start_movement()
 
     def on_draw(self):
         self.clear()
         self.background_list.draw()
         self.maze.draw()
+        self.active_hand.draw()
 
     def on_update(self, delta_time):
         self.maze.update()
+        self.maze.remove_destroyed_objects()
+        self.active_hand.update()
 
     def on_key_press(self, symbol, modifiers):
         print(symbol)
@@ -41,6 +53,7 @@ class MainView(arcade.View):
     def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
         for draggable in self.maze.draggable_objects:
             draggable.on_mouse_drag(x, y, dx, dy, buttons, modifiers)
+        
 
 def main():
     window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, resizable=True)

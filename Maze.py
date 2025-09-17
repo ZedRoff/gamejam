@@ -51,6 +51,9 @@ class Maze:
         left = j > 0 and self.G[i][j-1] == 1
         return (up, right, down, left)
     
+    def remove_destroyed_objects(self):
+        self.draggable_objects = [obj for obj in self.draggable_objects if not obj.to_remove]
+    
     def get_wall_image(self, connections):
         #bas,droite,haut,gauche 
         wall_images = {
@@ -111,8 +114,10 @@ class Maze:
             obj.center_y = self.start_y + pos[0] * self.case_size
             
             self.sprite_list_objects.append(obj)
-            draggable = DraggableSprite(obj, self.sprite_list_objects, self.sprite_list_mur)
+            draggable = DraggableSprite(obj, self.sprite_list_objects, self.sprite_list_mur, self.sprite_list_objects, self)
             self.draggable_objects.append(draggable)
+            
+            
     
     def update(self):
         for draggable in self.draggable_objects:
