@@ -1,9 +1,11 @@
 import arcade
 class DraggableSprite:
-    def __init__(self, sprite, sprite_list, collision_list=None):
+    def __init__(self, sprite, sprite_list, collision_list=None, other_objects_list=None, maze=None):
         self.sprite = sprite
         self.sprite_list = sprite_list
         self.collision_list = collision_list
+        self.other_objects_list = other_objects_list
+        self.maze = maze
         self.dragged = False
         self.shake_counter = 0
         
@@ -15,13 +17,35 @@ class DraggableSprite:
             self.sprite.center_x += dx
             self.sprite.center_y += dy
             
+            collision = False
+            
             if self.collision_list:
                 hit_list = arcade.check_for_collision_with_list(self.sprite, self.collision_list)
                 if hit_list:
-                    self.sprite.center_x -= dx
-                    self.sprite.center_y -= dy
-                    self.dragged = False
-                    self.shake_counter = 20
+                    collision = True
+            
+            if self.other_objects_list:
+                hit_objects = arcade.check_for_collision_with_list(self.sprite, self.other_objects_list)
+                for obj in hit_objects:
+                    if obj != self.sprite:
+                        collision = True
+                        break
+            
+            if self.maze:
+                maze_left = self.maze.start_x-100
+                maze_right = self.maze.start_x + self.maze.width_cases * self.maze.case_size
+                maze_bottom = self.maze.start_y
+                maze_top = self.maze.start_y + self.maze.height_cases * self.maze.case_size
+                
+                if (self.sprite.center_x < maze_left or self.sprite.center_x > maze_right or
+                    self.sprite.center_y < maze_bottom or self.sprite.center_y > maze_top):
+                    collision = True
+            
+            if collision:
+                self.sprite.center_x -= dx
+                self.sprite.center_y -= dy
+                self.dragged = False
+                self.shake_counter = 20
     
     def update(self):
         if self.shake_counter > 0:

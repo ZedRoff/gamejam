@@ -111,8 +111,10 @@ class Maze:
             obj.center_y = self.start_y + pos[0] * self.case_size
             
             self.sprite_list_objects.append(obj)
-            draggable = DraggableSprite(obj, self.sprite_list_objects, self.sprite_list_mur)
+            draggable = DraggableSprite(obj, self.sprite_list_objects, self.sprite_list_mur, self.sprite_list_objects, self)
             self.draggable_objects.append(draggable)
+            
+            
     
     def update(self):
         for draggable in self.draggable_objects:
