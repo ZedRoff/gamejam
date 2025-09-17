@@ -40,11 +40,23 @@ class DraggableSprite:
                 
                 if (self.sprite.center_x < maze_left or self.sprite.center_x > maze_right or
                     self.sprite.center_y < maze_bottom or self.sprite.center_y > maze_top):
+                    print(self.sprite.name)
+                    if self.sprite.name  == self.maze.random_item_image:
+                        
+                        print("Correct item delivered!")
+                    else:
+                        print("Wrong item delivered!")
                     self.to_remove = True
                     self.sprite.remove_from_sprite_lists()
+                    from views.bd_view import BdView
+                    game_view = BdView("laby")
+                    game_view.setup()
+                    
+                    self.maze.view.window.show_view(game_view)
                     return
             
             if collision:
+                
                 self.sprite.center_x -= dx
                 self.sprite.center_y -= dy
                 self.dragged = False

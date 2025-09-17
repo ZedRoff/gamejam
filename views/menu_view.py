@@ -19,7 +19,7 @@ class MenuView(arcade.View):
         SCREEN_WIDTH,  SCREEN_HEIGHT = getWindowSize.func()
         self.title = MainTitle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + title_offset)
         self.scene.add_sprite("UI", self.title)
-        titles = ["jouer", "parametres", "credits", "quitter"]
+        titles = ["jouer", "credits", "quitter"]
        
         for i in range(len(titles)): 
             start, end = (SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2) + offset + i * spacing

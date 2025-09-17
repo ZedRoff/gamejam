@@ -2,17 +2,19 @@ import arcade
 import random
 from DraggableSprite import DraggableSprite
 class Maze:
-    def __init__(self, width_cases, height_cases, case_size=30, start_x=0, start_y=0):
+    def __init__(self, width_cases, height_cases, case_size=30, start_x=0, start_y=0, view=None):
         self.width_cases = width_cases
         self.height_cases = height_cases
         self.case_size = case_size
         self.start_x = start_x
         self.start_y = start_y
+        self.view = view
         self.sprite_list_mur = arcade.SpriteList()
         self.sprite_list_objects = arcade.SpriteList()
         self.draggable_objects = []
         self.G = self.generate_maze()
         self.create_walls()
+        self.random_item_image = None  # Initialize the random item image attribute
     
     def generate_maze(self):
         G = [[1 for _ in range(self.width_cases)] for _ in range(self.height_cases)]
@@ -95,29 +97,32 @@ class Maze:
                     self.sprite_list_mur.append(mur)
     
     def create_draggable_objects(self):
-        object_images = ["assets/objects/cagoule.png", "assets/objects/biberon.png", "assets/objects/brosse_a_cheveux.png", "assets/objects/brosse_a_dent.png", "assets/objects/cadenas.png", "assets/objects/jouer_casser.png", "assets/objects/kit_de_crochetage.png"]
-        
+        object_images = [
+            "assets/objects/cagoule.png", "assets/objects/biberon.png", "assets/objects/brosse_a_cheveux.png", "assets/objects/brosse_a_dent.png", "assets/objects/cadenas.png", "assets/objects/jouer_casser.png", "assets/objects/kit_de_crochetage.png"
+        ]
+        # Select a random item to show in the UI
+        self.random_item_image = random.choice(object_images)
+
         empty_positions = []
         for i in range(len(self.G)):
             for j in range(len(self.G[i])):
                 if self.G[i][j] == 0:
                     empty_positions.append((i, j))
-        
+
         for i in range(7):
             pos = random.choice(empty_positions)
             empty_positions.remove(pos)
 
             obj = arcade.Sprite(object_images[i], 1)
+            obj.name = object_images[i]
             obj.width = 50
             obj.height = 50
             obj.center_x = self.start_x + pos[1] * self.case_size
             obj.center_y = self.start_y + pos[0] * self.case_size
-            
+
             self.sprite_list_objects.append(obj)
             draggable = DraggableSprite(obj, self.sprite_list_objects, self.sprite_list_mur, self.sprite_list_objects, self)
             self.draggable_objects.append(draggable)
-            
-            
     
     def update(self):
         for draggable in self.draggable_objects:
@@ -126,3 +131,12 @@ class Maze:
     def draw(self):
         self.sprite_list_mur.draw()
         self.sprite_list_objects.draw()
+        # Draw the random item in the UI (top left corner)
+        if hasattr(self, "random_item_image"):
+            sprite = arcade.Sprite(self.random_item_image, 1)
+            sprite.width = 60
+            sprite.height = 60
+            sprite.center_x = 80
+            sprite.center_y = 80
+            self.sprite_list_objects.append(sprite)
+            arcade.draw_text("Random item:", 80, 140, arcade.color.BLACK, 16, anchor_x="center")

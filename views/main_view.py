@@ -19,7 +19,7 @@ class MainView(arcade.View):
         self.background_list = arcade.SpriteList()
         self.background_list.append(self.background_sprite)
         
-        self.maze = Maze(600//50, 600//50, 70, SCREEN_WIDTH//2-500, SCREEN_HEIGHT//2-500)
+        self.maze = Maze(600//50, 600//50, 70, SCREEN_WIDTH//2-500, SCREEN_HEIGHT//2-500, self)
         self.maze.create_draggable_objects()
 
         self.handG = Hand("assets/handG.png", "gauche", self.maze)

@@ -19,18 +19,23 @@ class ScenarioView(arcade.View):
         y = height // 2
         spacing = 300  # Espace horizontal entre les boutons
 
-        titles = ['scenario_politicien', 'scenario_voleur', 'scenario_clown']
-        images = ['./assets/scenario_politicien.png', './assets/scenario_voleur.png', './assets/scenario_clown.png']
+        self.titles = ['scenario_politicien', 'scenario_voleur', 'scenario_clown']
+        self.images = ['./assets/scenario_politicien.png', './assets/scenario_voleur.png', './assets/scenario_clown.png']
+        self.descriptions = [
+            ".",
+            "Incarnez le sac d'un cambrioleur",
+            "."
+        ]
 
         # Calcul du point de départ (gauche) pour centrer les boutons
         start_x = x - spacing  # car 3 boutons → espacement sur 2 intervalles
 
         for i in range(3):
             button = Button(
-                titles[i],
+                self.titles[i],
                 start_x + i * spacing,  # 👈 variation horizontale
                 y,                      # 👈 position verticale fixe
-                images[i],
+                self.images[i],
                 0.8 if i==1 else 0.5,
                 self
             )
@@ -45,6 +50,23 @@ class ScenarioView(arcade.View):
     def on_draw(self):
         self.clear()
         self.scene.draw()
+        # Dessine la description sous chaque image de scénario
+        x = getWindowSize.func()[0] // 2
+        y = getWindowSize.func()[1] // 2
+        spacing = 300
+        start_x = x - spacing
+        for i in range(3):
+            desc_x = start_x + i * spacing
+            desc_y = y - 350  # Ajuste selon la taille des images
+            arcade.draw_text(
+                self.descriptions[i],
+                desc_x,
+                desc_y,
+                arcade.color.DARK_GRAY,
+                font_size=14,
+                anchor_x="center",
+                anchor_y="top"
+            )
     def on_key_press(self, key, modifiers):
         if key == arcade.key.RIGHT:
             print("appui") 
