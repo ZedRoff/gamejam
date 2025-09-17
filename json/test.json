@@ -1,12 +1,60 @@
 {
     "items":{
         "item1":{
-            "name" : "blabla",
+            "name" : "brosse a dent",
             "sprite_little": "chemin/vers/image",
-            "sprite_big": "chemin/vers/image"
+            "sprite_big": "chemin/vers/image",
+            "echec":"Pourquoi faire",
+            "reussite":"Heureusement c'est ce que je veux"
+        },
+        "item2":{
+            "name": "Joué cassé",
+            "sprite_little": "chemin/vers/image",
+            "sprite_big": "chemin/vers/image",
+            "echec": "C'est tout casssé ",
+            "reussite": "Un jouet cassé, ça à l'avantage d'etre coupant"
+        },
+        "item3": {
+            "name": "Brosse à cheveux",
+            "sprite_little": "chemin/vers/image",
+            "sprite_big": "chemin/vers/image",
+            "echec": "Je peux meme pas me coiffer avec la cagoule",
+            "reussite": "Heureusement c'est ce que je veux"
+        },
+        "item4": {
+            "name": "Biberon",
+            "sprite_little": "chemin/vers/image",
+            "sprite_big": "chemin/vers/image",
+            "echec": "Un biberon m'est inutile. J'ai plus deux ans",
+            "reussite": "Pourquoi j'ai demandé ça deja "
+        },
+        "item5": {
+            "name": "Kit de crochetage",
+            "sprite_little": "chemin/vers/image",
+            "sprite_big": "chemin/vers/image",
+            "echec": "Il y a meme pas de porte pour ce kit de crochetage",
+            "reussite": "Cette porte j'en fait mon affaire"
+        },
+        "item6": {
+            "name": "Cagoule",
+            "sprite_little": "chemin/vers/image",
+            "sprite_big": "chemin/vers/image",
+            "echec": "Mais !!! J'en est déja une de cagoule ",
+            "reussite": "Avec cette cagoule, je vais pouvoir me couvrir le visage"
+        },
+        "item7": {
+            "name": "Argent ",
+            "sprite_little": "chemin/vers/image",
+            "sprite_big": "chemin/vers/image",
+            "echec": "Je peux rien acheter avec cette argent",
+            "reussite": "Je vais pouvor utilisé cette argent pour rembourser les dégats"
+        },
+        "item8": {
+            "name": "Cadenas",
+            "sprite_little": "chemin/vers/image",
+            "sprite_big": "chemin/vers/image",
+            "echec": "Le cadenas est vraiment inutile",
+            "reussite": "Avec ce cadena je vais pouvoir enfermer quelque chose"
         }
-    },
-    "image":{
-        "bouton...":"chemin/vers/bouton"
     }
 }
