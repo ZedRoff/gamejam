@@ -2,6 +2,7 @@ import arcade
 import random
 from Maze import Maze
 from Hand import Hand
+from AngerBar import AngerBar
 from DraggableSprite import DraggableSprite
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
@@ -29,6 +30,9 @@ class MainView(arcade.View):
             self.active_hand = self.handG
         else:
             self.active_hand = self.handD
+        
+        self.anger_bar = AngerBar(5, SCREEN_HEIGHT - 450, 230, 115, max_value=100)
+
             
         self.active_hand.start_movement()
 
@@ -37,6 +41,7 @@ class MainView(arcade.View):
         self.background_list.draw()
         self.maze.draw()
         self.active_hand.draw()
+        self.anger_bar.draw()
 
     def on_update(self, delta_time):
         self.maze.update()
