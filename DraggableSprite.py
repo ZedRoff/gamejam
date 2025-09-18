@@ -1,4 +1,5 @@
 import arcade
+from model.Music import Music
 class DraggableSprite:
     def __init__(self, sprite, sprite_list, collision_list=None, other_objects_list=None, maze=None):
         self.sprite = sprite
@@ -56,7 +57,8 @@ class DraggableSprite:
                     return
             
             if collision:
-                
+                sound= Music("objet_toutch.wav",False)
+                sound.play(1,False)
                 self.sprite.center_x -= dx
                 self.sprite.center_y -= dy
                 self.dragged = False

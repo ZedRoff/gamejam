@@ -3,7 +3,7 @@ import arcade
 
 class Button(arcade.Sprite):
     def __init__(self, title, x, y, image_path, scale, view):
-        super().__init__(image_path, scale, opacity=100)
+        super().__init__(image_path, scale)
         self.center_x = x
         self.center_y = y
         self.title = title
