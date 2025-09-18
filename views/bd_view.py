@@ -102,11 +102,6 @@ class BdView(arcade.View):
             
             BD(width // 2, height // 2, "./assets/spe_9.png", delay=.5),
             
-            BD(width // 2, height // 2, "./assets/spe_10.png", delay=.5),
-            
-            BD(width // 2, height // 2, "./assets/spe_11.png", delay=.5),
-            
-            
             
            BD(0,0,"./assets/bg_1_4.png", delay=2, clear=True),
            
