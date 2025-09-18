@@ -26,17 +26,15 @@ class DraggableSprite:
                 hit_list = arcade.check_for_collision_with_list(self.sprite, self.collision_list)
                 if hit_list:
                     collision = True
-                    # Augmenter la barre d'agacement de 1/5 (20%) quand mauvais objet
                     if hasattr(self.maze.view, 'anger_bar'):
-                        self.maze.view.anger_bar.increase(20)  # 20% de la barre max (100)
+                        self.maze.view.anger_bar.increase(20)  
             
             if self.other_objects_list:
                 hit_objects = arcade.check_for_collision_with_list(self.sprite, self.other_objects_list)
                 for obj in hit_objects:
                     if obj != self.sprite:
-                        # Augmenter la barre d'agacement de 1/5 (20%) quand mauvais objet
                         if hasattr(self.maze.view, 'anger_bar'):
-                            self.maze.view.anger_bar.increase(20)  # 20% de la barre max (100)
+                            self.maze.view.anger_bar.increase(20)  
                         collision = True
                         break
             
@@ -48,16 +46,51 @@ class DraggableSprite:
                 
                 if (self.sprite.center_x < maze_left or self.sprite.center_x > maze_right or
                     self.sprite.center_y < maze_bottom or self.sprite.center_y > maze_top):
+                    
+                    if hasattr(self.maze.view, 'hand_started') and not self.maze.view.hand_started:
+                        print("La main n'est pas encore arrivée, impossible de changer de scène!")
+                        self.sprite.center_x -= dx
+                        self.sprite.center_y -= dy
+                        self.dragged = False
+                        return
+                    
+                    if hasattr(self.maze.view, 'active_hand') and self.maze.view.active_hand.is_moving:
+                        print("La main est encore en mouvement, attendez qu'elle arrive!")
+                        self.sprite.center_x -= dx
+                        self.sprite.center_y -= dy
+                        self.dragged = False
+                        return
+                    
+                    hand_direction = self.maze.view.active_hand.direction if hasattr(self.maze.view, 'active_hand') else None
+                    
+                    object_exit_side = None
+                    if self.sprite.center_x < maze_left:
+                        object_exit_side = "gauche"
+                    elif self.sprite.center_x > maze_right:
+                        object_exit_side = "droite"
+                    elif self.sprite.center_y < maze_bottom:
+                        object_exit_side = "bas"
+                    elif self.sprite.center_y > maze_top:
+                        object_exit_side = "haut"
+                    
+                    if hand_direction and object_exit_side:
+                        if (hand_direction == "gauche" and object_exit_side != "gauche") or \
+                           (hand_direction == "droite" and object_exit_side != "droite"):
+                            print("tromp")
+                            self.sprite.center_x -= dx
+                            self.sprite.center_y -= dy
+                            self.dragged = False
+                            return
+                    
                     print(self.sprite.name)
-                    if self.sprite.name  == self.maze.random_item_image:
-                        take =Music("take_object.wav",False)
-                        take.play(1,False)
+                    if self.sprite.name == self.maze.random_item_image:
+                        take = Music("take_object.wav", False)
+                        take.play(1, False)
                         print("Correct item delivered!")
                     else:
                         print("Wrong item delivered!")
-                        # Augmenter la barre d'agacement de 1/5 (20%) quand mauvais objet
                         if hasattr(self.maze.view, 'anger_bar'):
-                            self.maze.view.anger_bar.increase(20)  # 20% de la barre max (100)
+                            self.maze.view.anger_bar.increase(20) 
                     
                     self.to_remove = True
                     self.sprite.remove_from_sprite_lists()

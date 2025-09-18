@@ -33,20 +33,38 @@ class MainView(arcade.View):
         
         self.anger_bar = AngerBar(5, SCREEN_HEIGHT - 450, 230, 115, max_value=100)
 
-            
-        self.active_hand.start_movement()
+        # Ajout du système de temporisation
+        self.hand_timer = 0.0  # Timer pour compter le temps écoulé
+        self.hand_delay = 8.0  # Délai de 8 secondes
+        self.hand_started = False  # Flag pour savoir si la main a commencé
 
     def on_draw(self):
         self.clear()
         self.background_list.draw()
         self.maze.draw()
-        self.active_hand.draw()
+        
+        # Ne dessiner la main que si elle a été activée
+        if self.hand_started:
+            self.active_hand.draw()
+            
         self.anger_bar.draw()
 
     def on_update(self, delta_time):
         self.maze.update()
         self.maze.remove_destroyed_objects()
-        self.active_hand.update()
+        
+        # Mise à jour du timer
+        if not self.hand_started:
+            self.hand_timer += delta_time
+            
+            # Si 8 secondes sont écoulées, démarrer la main
+            if self.hand_timer >= self.hand_delay:
+                self.hand_started = True
+                self.active_hand.start_movement()
+        
+        # Mettre à jour la main seulement si elle a été activée
+        if self.hand_started:
+            self.active_hand.update()
 
     def on_key_press(self, symbol, modifiers):
         print(symbol)
