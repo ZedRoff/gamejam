@@ -10,18 +10,7 @@ from model.dialog import Dialog
 
 
 
-BD(width // 2, height // 2, "./assets/bg_1_0.png", delay=1),
-            BD(width // 2, height // 2, "./assets/bg_1_1.png", delay=1, should_be_deleted=True),
-            BD(width // 2, height // 2, "./assets/bg_1_2.png", delay=1),
-            BD(width // 2, height // 2, "./assets/bg_1_3.png", delay=1, should_be_deleted=True),
-            BD(width // 2, height // 2, "./assets/bg_1_4.png", delay=1, should_be_deleted=True),
-            BD(width // 2, height // 2, "./assets/bg_1_5.png", delay=1, should_be_deleted=True),
-            BD(width // 2, height // 2, "./assets/bg_1_6.png", delay=1, should_be_deleted=True),
-            BD(width // 2, height // 2, "./assets/bg_1_7.png", delay=1, should_be_deleted=True),
-            BD(width // 2, 250, "./assets/dialogue.png", delay=3, should_be_deleted=True, text="Parfait, ils sont partis dormir"),
-            BD(width // 2, height // 2, "./assets/bg_1_8.png", delay=1, should_be_deleted=True),
-           BD(0,0,"./assets/bg_1_4.png", delay=1, clear=True),
-
+           
 
             
            
@@ -77,6 +66,49 @@ class BdView(arcade.View):
             
         if self.fromClass == "menu":
             self.frames = [
+                 BD(width // 2, height // 2, "./assets/bg_1_0.png", delay=1),
+            BD(width // 2, height // 2, "./assets/bg_1_1.png", delay=1, should_be_deleted=True),
+            BD(width // 2, height // 2, "./assets/bg_1_2.png", delay=1),
+            BD(width // 2, height // 2, "./assets/bg_1_3.png", delay=1, should_be_deleted=True),
+            BD(width // 2, height // 2, "./assets/bg_1_4.png", delay=1, should_be_deleted=True),
+            BD(width // 2, height // 2, "./assets/bg_1_5.png", delay=1, should_be_deleted=True),
+            BD(width // 2, height // 2, "./assets/bg_1_6.png", delay=1, should_be_deleted=True),
+            BD(width // 2, height // 2, "./assets/bg_1_7.png", delay=1),
+            BD(width // 2, 250, "./assets/dialogue.png", delay=3, should_be_deleted=True, text="Parfait, ils sont partis dormir"),
+            
+                   
+           BD(0,0,"./assets/bg_1_4.png", delay=1, clear=True),
+           
+            BD(width // 2, height // 2, "./assets/spe_0.png", delay=0.5),
+            
+            BD(width // 2, height // 2, "./assets/spe_1.png", delay=.5),
+            
+            BD(width // 2, height // 2, "./assets/spe_2.png", delay=.5),
+            
+            BD(width // 2, height // 2, "./assets/spe_3.png", delay=.5),
+            
+            BD(width // 2, height // 2, "./assets/spe_4.png", delay=.5),
+            
+            BD(width // 2, height // 2, "./assets/spe_5.png", delay=.5),
+            
+            BD(width // 2, height // 2, "./assets/spe_6.png", delay=.5),
+            
+            BD(width // 2, height // 2, "./assets/spe_7.png", delay=.5),
+            
+            BD(width // 2, height // 2, "./assets/spe_8.png", delay=.5),
+            
+            BD(width // 2, height // 2, "./assets/spe_9.png", delay=.5),
+            
+            BD(width // 2, height // 2, "./assets/spe_10.png", delay=.5),
+            
+            BD(width // 2, height // 2, "./assets/spe_11.png", delay=.5),
+            
+            
+            
+           BD(0,0,"./assets/bg_1_4.png", delay=2, clear=True),
+           
+            
+
             BD(width // 2, height // 2, "./assets/couloir_layout.png", delay=0.1),
              BD(width // 2, height // 2, "./assets/couloir_character1.png", delay=1),
             BD(width // 2, height // 2, "./assets/couloir_door_0.png", delay=1, should_be_deleted=True),
