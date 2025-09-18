@@ -34,7 +34,7 @@ class DraggableSprite:
             
             if self.maze:
                 maze_left = self.maze.start_x - 100
-                maze_right = self.maze.start_x + self.maze.width_cases * self.maze.case_size + 100
+                maze_right = self.maze.start_x + self.maze.width_cases * self.maze.case_size + 30
                 maze_bottom = self.maze.start_y - 100
                 maze_top = self.maze.start_y + self.maze.height_cases * self.maze.case_size + 100
                 

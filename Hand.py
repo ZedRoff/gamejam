@@ -18,7 +18,7 @@ class Hand:
         
         if self.direction == "droite":
             self.image.center_x = SCREEN_WIDTH + self.image.width // 2
-            self.target_x = self.maze.start_x + self.maze.width_cases * self.maze.case_size +700
+            self.target_x = self.maze.start_x + self.maze.width_cases * self.maze.case_size +600
         else:
             self.image.center_x = -self.image.width // 2
             self.target_x = self.maze.start_x+100
