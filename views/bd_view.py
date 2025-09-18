@@ -33,10 +33,13 @@ class BdView(arcade.View):
     def setup(self):
         self.scene = arcade.Scene()
         width, height = getWindowSize.func()
-        if self.fromClass == "laby":
+      
+            
+        if self.fromClass == "laby" or self.fromClass == "laby_spe":
             
             BdView.cycles = BdView.cycles + 1 
-            if BdView.cycles == 3:
+            if BdView.cycles == 3 or self.fromClass == "laby_spe":
+                BdView.cycles = 3
                 self.frames = [
                     BD(0,0,"./assets/bg_1_4.png", delay=1, clear=True),
         
@@ -50,6 +53,10 @@ class BdView(arcade.View):
                 BD(width // 2, height // 2, "./assets/fin_mvt_3.png", delay=1,should_be_deleted=True),
                 
             BD(width // 2, height // 2, "./assets/fin_mvt_4.png", delay=1,should_be_deleted=True),
+                     BD(0,0,"./assets/bg_1_4.png", delay=3, clear=True),
+        
+                   BD(width // 2, height // 2, "./assets/fin_jpp_0.png", delay=3,should_be_deleted=True),
+                 BD(width // 2, height // 2, "./assets/fin_jpp_1.png", delay=3  ,should_be_deleted=True),
                 
 
                 ]

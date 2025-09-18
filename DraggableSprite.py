@@ -76,7 +76,13 @@ class DraggableSprite:
                     if hand_direction and object_exit_side:
                         if (hand_direction == "gauche" and object_exit_side != "gauche") or \
                            (hand_direction == "droite" and object_exit_side != "droite"):
-                            print("tromp")
+                            from views.bd_view import BdView
+                            game_view = BdView("laby_spe")
+                            game_view.setup()
+                            print("Mauvais côté pour sortir l'objet!")
+                            self.maze.view.window.show_view(game_view)
+                            return
+                        
                             self.sprite.center_x -= dx
                             self.sprite.center_y -= dy
                             self.dragged = False
