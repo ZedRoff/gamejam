@@ -56,21 +56,33 @@ class BdView(arcade.View):
                      BD(0,0,"./assets/bg_1_4.png", delay=3, clear=True),
         
                    BD(width // 2, height // 2, "./assets/fin_jpp_0.png", delay=3,should_be_deleted=True),
-                 BD(width // 2, height // 2, "./assets/fin_jpp_1.png", delay=3  ,should_be_deleted=True),
+                 BD(width // 2, height // 2, "./assets/fin_jpp_1.png", delay=3,should_be_deleted=True),
                 
 
                 ]
             else:
-                self.frames = [
-                    
-            BD(width // 2, height // 2, "./assets/couloir_layout.png", delay=0.1),
-              BD(width // 2, height // 2, "./assets/couloir_character1.png", delay=1),
-       
-            BD(width // 2, height // 2, "./assets/couloir_armoire_0.png", delay=1, should_be_deleted=True),
-       
-            BD(width // 2, height // 2, "./assets/couloir_armoire_1.png", delay=1, should_be_deleted=True),
-            BD(width // 2, height // 2, "./assets/couloir_armoire_2.png", delay=1),
-              ]
+                if BdView.cycles == 1:
+                    self.frames = [
+                        
+                BD(width // 2, height // 2, "./assets/couloir_layout.png", delay=0.1),
+                BD(width // 2, height // 2, "./assets/couloir_character1.png", delay=1),
+        
+                BD(width // 2, height // 2, "./assets/couloir_armoire_0.png", delay=1, should_be_deleted=True),
+        
+                BD(width // 2, height // 2, "./assets/couloir_armoire_1.png", delay=1, should_be_deleted=True),
+                BD(width // 2, height // 2, "./assets/couloir_armoire_2.png", delay=1),
+                ]
+                else:
+                      self.frames = [
+                        
+                BD(width // 2, height // 2, "./assets/couloir_layout.png", delay=0.1),
+                BD(width // 2, height // 2, "./assets/couloir_character1.png", delay=1),
+        
+                BD(width // 2, height // 2, "./assets/couloir_tableau_0.png", delay=1, should_be_deleted=True),
+        
+                BD(width // 2, height // 2, "./assets/couloir_tableau_1.png", delay=1, should_be_deleted=True),
+                BD(width // 2, height // 2, "./assets/couloir_tableau_2.png", delay=1),
+                ]
             
         if self.fromClass == "menu":
             music= Music("night_ambiance.wav", True)
