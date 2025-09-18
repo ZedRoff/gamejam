@@ -43,7 +43,8 @@ class DraggableSprite:
                     self.sprite.center_y < maze_bottom or self.sprite.center_y > maze_top):
                     print(self.sprite.name)
                     if self.sprite.name  == self.maze.random_item_image:
-                        
+                        take =Music("take_object.wav",False)
+                        take.play(1,False)
                         print("Correct item delivered!")
                     else:
                         print("Wrong item delivered!")

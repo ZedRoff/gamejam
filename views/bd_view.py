@@ -4,6 +4,7 @@ from model.ScenarioTitle import ScenarioTitle
 from utils import getWindowSize
 from model.BD import BD
 from model.dialog import Dialog
+from model.Music import Music
 """
 
 
@@ -65,6 +66,8 @@ class BdView(arcade.View):
               ]
             
         if self.fromClass == "menu":
+            music= Music("night_ambiance.wav", True)
+            music.play(1,False)
             self.frames = [
                  BD(width // 2, height // 2, "./assets/bg_1_0.png", delay=1),
             BD(width // 2, height // 2, "./assets/bg_1_1.png", delay=1, should_be_deleted=True),
