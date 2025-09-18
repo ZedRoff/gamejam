@@ -1,5 +1,6 @@
 import arcade
 from model.Music import Music
+
 class DraggableSprite:
     def __init__(self, sprite, sprite_list, collision_list=None, other_objects_list=None, maze=None):
         self.sprite = sprite
@@ -25,11 +26,17 @@ class DraggableSprite:
                 hit_list = arcade.check_for_collision_with_list(self.sprite, self.collision_list)
                 if hit_list:
                     collision = True
+                    # Augmenter la barre d'agacement de 1/5 (20%) quand mauvais objet
+                    if hasattr(self.maze.view, 'anger_bar'):
+                        self.maze.view.anger_bar.increase(20)  # 20% de la barre max (100)
             
             if self.other_objects_list:
                 hit_objects = arcade.check_for_collision_with_list(self.sprite, self.other_objects_list)
                 for obj in hit_objects:
                     if obj != self.sprite:
+                        # Augmenter la barre d'agacement de 1/5 (20%) quand mauvais objet
+                        if hasattr(self.maze.view, 'anger_bar'):
+                            self.maze.view.anger_bar.increase(20)  # 20% de la barre max (100)
                         collision = True
                         break
             
@@ -48,6 +55,10 @@ class DraggableSprite:
                         print("Correct item delivered!")
                     else:
                         print("Wrong item delivered!")
+                        # Augmenter la barre d'agacement de 1/5 (20%) quand mauvais objet
+                        if hasattr(self.maze.view, 'anger_bar'):
+                            self.maze.view.anger_bar.increase(20)  # 20% de la barre max (100)
+                    
                     self.to_remove = True
                     self.sprite.remove_from_sprite_lists()
                     from views.bd_view import BdView
@@ -58,8 +69,8 @@ class DraggableSprite:
                     return
             
             if collision:
-                sound= Music("objet_toutch.wav",False)
-                sound.play(1,False)
+                sound = Music("objet_toutch.wav", False)
+                sound.play(1, False)
                 self.sprite.center_x -= dx
                 self.sprite.center_y -= dy
                 self.dragged = False
